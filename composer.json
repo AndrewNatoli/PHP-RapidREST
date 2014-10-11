@@ -1,27 +1,35 @@
 {
-   "name": "vendor_name/package_name",
-    "description": "description_text",
+   "name": "AndrewNatoli/RapidREST",
+    "description": "Rapid prototyping and development of CRUD REST API's for personal use.",
     "minimum-stability": "dev",
-    "license": "proprietary",
+    "license": "MIT",
     "repositories": [
-         	{
-                "type": "package",
-                "package": {
-                    "name": "redbeanphp",
-                    "version": "4.1.1",
-                    "dist": {
-                        "url": "http://www.redbeanphp.com/downloadredbean.php",
-                        "type": "tar"
-                    }
+        {
+            "type": "package",
+            "package": {
+                "name": "redbeanphp",
+                "version": "4.1.1",
+                "dist": {
+                    "url": "http://www.redbeanphp.com/downloadredbean.php",
+                    "type": "tar"
                 }
             }
+        }
 
-        ],
+    ],
     "authors": [
-        {            "name": "author's name",
-            "email": "email@example.com"
+        {
+            "name": "Andrew Natoli",
+            "email": "AndrewNatoli@AndrewNatoli.com",
+            "homepage": "http://AndrewNatoli.com",
+            "role": "Developer"
         }
     ],
+
+    "support": {
+        "source": "https://github.com/AndrewNatoli/PHP-RapidREST"
+    },
+
    "require": {
       "slim/slim": "2.4.3",
       "redbeanphp": "4.1.*"
