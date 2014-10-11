@@ -27,18 +27,18 @@ class AppRouter {
         /* Put your custom routes above this line! */
 
         # GET list
-        $slim->get('/:item/', function ($item) {
-            echo "This is a list of " . $item . "!";
+        $slim->get('/:type/', function ($type) {
+            RapidRest::getList($type);
         });
 
         # GET item
-        $slim->get('/:item/:id/', function ($item, $id) {
-            echo "This is " . $item . " id " . $id;
+        $slim->get('/:type/:id/', function ($type, $id) {
+            RapidRest::getItem($type, $id);
         });
 
         # POST item
-        $slim->post('/:item/', function ($item) {
-            echo "Creating " . $item;
+        $slim->post('/:type/', function ($type) {
+            echo "Creating " . $type;
         });
 
         # PUT item
