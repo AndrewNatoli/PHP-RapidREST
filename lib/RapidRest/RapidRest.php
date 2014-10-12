@@ -36,6 +36,12 @@ class RapidRest {
         }
     }
 
+    /**
+     * Return all records for a type
+     * @param string $type Database table
+     * @return string JSON All of the records and their contents
+     * @throws API\Exceptions\APIException No records found, 404
+     */
     public static function getList($type) {
         $beans = R::find($type);
         $response = R::exportAll($beans);
@@ -49,10 +55,10 @@ class RapidRest {
 
     /**
      * Fetch a bean from the database and display its contents
-     * @param $type
-     * @param $id
-     * @return JSON
-     * @throws API\Exceptions\APIException
+     * @param string $type Database Table
+     * @param int $id Record ID
+     * @return string JSON Item contents
+     * @throws API\Exceptions\APIException Record not found, 404.
      */
     public static function getItem($type,$id) {
         $response = array();
@@ -66,15 +72,65 @@ class RapidRest {
         }
     }
 
+    /**
+     * Create a bean using post data and store it in the database
+     * @param string $type Table
+     * @return string JSON {"data":{"id":new_id}}
+     * @throws API\Exceptions\APIException No data received, 400
+     */
     public static function postItem($type) {
+        $bean = R::dispense($type);
+        if(sizeof($_POST) > 0) {
+            $bean->import($_POST);
+            $id = R::store($bean);
+            return new JSON(array("data"=>array("id"=>$id)));
+        } else {
+            throw new APIException("No data received.",400);
+        }
+
 
     }
 
+    /**
+     * PUT request to update an existing bean
+     * @param string $type Table
+     * @param int $id ID
+     * @return string JSON {"data":{"id":$id}}
+     * @throws API\Exceptions\APIException { Not found, 404 | No $_POST data received, 400 }
+     */
     public static function putItem($type,$id) {
-
+        $bean = R::load($type,$id);
+        # Make sure we have a result
+        $id = $bean->export(); # Exports the RedBean to an array
+        if($id['id'] == 0) {
+            throw new APIException("Record not found.",404);
+        } else {
+            if(sizeof($_REQUEST) > 0) {
+                $bean->import($_REQUEST);
+                R::store($bean);
+                return new JSON(array("data"=>array("id"=>$id['id'])));
+            } else {
+                throw new APIException("No data received.", 400);
+            }
+        }
     }
 
+    /**
+     * DELETE request to delete an existing record
+     * @param string $type Table
+     * @param int $id Record ID
+     * @return string JSON {"data":"ok"}
+     * @throws API\Exceptions\APIException { Record not found, 404 }
+     */
     public static function deleteItem($type,$id) {
-
+        $bean = R::load($type,$id);
+        # Make sure we have a result
+        $id = $bean->export(); # Exports the RedBean to an array
+        if($id['id'] == 0) {
+            throw new APIException("Record not found.",404);
+        } else {
+            R::trash($bean);
+            return new JSON(array("data"=>"ok"));
+        }
     }
 }

@@ -38,17 +38,17 @@ class AppRouter {
 
         # POST item
         $slim->post('/:type/', function ($type) {
-            echo "Creating " . $type;
+            RapidRest::postItem($type);
         });
 
         # PUT item
-        $slim->put('/:item/:id/', function ($item, $id) {
-            echo "Updating " . $item . " id " . $id;
+        $slim->put('/:type/:id/', function ($type, $id) {
+            RapidRest::putItem($type, $id);
         });
 
         # DELETE item
-        $slim->put('/:item/:id/', function ($item, $id) {
-            echo "Deleting " . $item . " id " . $id;
+        $slim->delete('/:type/:id/', function ($type, $id) {
+            RapidRest::deleteItem($type, $id);
         });
     }
 }
