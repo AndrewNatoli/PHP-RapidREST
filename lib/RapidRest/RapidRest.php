@@ -1,5 +1,4 @@
 <?php
-
 require_once 'Exceptions/APIException.php';
 require_once 'Response/ResponseInterface.php';
 require_once 'Response/Response.php';

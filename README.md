@@ -18,6 +18,11 @@ Rather than re-inventing the wheel I decided to use [Slim Framework](http://www.
 
 #Installation
 =============
+### Requirements...
+You'll need an apache server with **mod_rewrite** and **PHP >= 5.3.0**
+
+**Composer** is needed to install the dependencies.
+
 ### Clone the Repo!
 
 	git clone https://github.com/AndrewNatoli/PHP-RapidREST.git
