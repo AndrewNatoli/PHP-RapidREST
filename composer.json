@@ -4,7 +4,6 @@
     "minimum-stability": "dev",
     "license": "MIT",
     "type": "project",
-    "version": "1.0.0",
     "homepage": "http://andrewnatoli.com/portfolio/php-rapidrest/",
     "repositories": [
         {
