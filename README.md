@@ -23,6 +23,13 @@ You'll need an apache server with **mod_rewrite** and **PHP >= 5.3.0**
 
 **Composer** is needed to install the dependencies.
 
+## Install with Composer
+
+	php composer.phar create-project andrew-natoli/rapid-rest -sdev
+
+
+## OR... Use git & composer
+
 ### Clone the Repo!
 
 	git clone https://github.com/AndrewNatoli/PHP-RapidREST.git
@@ -31,13 +38,11 @@ You'll need an apache server with **mod_rewrite** and **PHP >= 5.3.0**
 Now use [composer](https://getcomposer.org/download/) to install [Slim Framework](http://www.slimframework.com/) and [RedBeanPHP](http://redbeanphp.com).
 	
 	sudo php composer.phar update
-	
-*(I know, I know. I don't have it installed globally.)*
 
-### Connect to the Database!
+## Once installed... connect to the database!
 Open **/config/rapidrest-config.php** to configure your database connection.
 
-### All Done!
+## All Done!
 Enjoy your CRUD API!
 
 # Stock API
