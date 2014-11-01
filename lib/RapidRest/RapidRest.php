@@ -79,8 +79,8 @@ class RapidRest {
      */
     public static function postItem($type) {
         $bean = R::dispense($type);
-        if(sizeof($_POST) > 0) {
-            $bean->import($_POST);
+        if(sizeof($_REQUEST) > 0) {
+            $bean->import($_REQUEST);
             $id = R::store($bean);
             return new JSON(array("data"=>array("id"=>$id)));
         } else {
