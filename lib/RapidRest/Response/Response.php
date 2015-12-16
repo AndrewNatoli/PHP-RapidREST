@@ -32,12 +32,15 @@ abstract class Response implements  \ResponseInterface{
      */
     function __construct(array $data) {
         # What's our object to return?
+        /* Removed >= 1.0.1
         if(!empty($data['data'])) {
             $this->data = $data['data'];
         } else {
             # Throw an exception if there's an empty response
             throw new APIException("No response",500);
         }
+        */
+        $this->data = $data;
 
         # Display the output
         $this->showOutput();

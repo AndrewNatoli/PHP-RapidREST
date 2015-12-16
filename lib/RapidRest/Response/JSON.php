@@ -27,7 +27,7 @@ class JSON extends Response {
      * json_encode our output and send it to the client
      */
     function showOutput() {
-        $output = json_encode($this);
+        $output = json_encode($this->data);
         echo $output;
     }
 }

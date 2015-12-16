@@ -15,10 +15,9 @@ class APIException extends Exception
 {
     // Redefine the exception so message isn't optional
     public function __construct($message, $code = 500, Exception $previous = null) {
-        http_response_code($code);
         Header('Content-Type: application/json');
         $data['message'] = $message;
-        $data['statusCode'] = $code;
+        $data['statuscode'] = $code;
         echo json_encode($data);
         die();
     }
