@@ -118,7 +118,7 @@ class RapidRest {
      * DELETE request to delete an existing record
      * @param string $type Table
      * @param int $id Record ID
-     * @return string JSON {"data":"ok"}
+     * @return string JSON {"deleted": true}
      * @throws API\Exceptions\APIException { Record not found, 404 }
      */
     public static function deleteItem($type,$id) {
@@ -126,10 +126,10 @@ class RapidRest {
         # Make sure we have a result
         $id = $bean->export(); # Exports the RedBean to an array
         if($id['id'] == 0) {
-            throw new APIException("Record not found.",404);
+            return new JSON(array("deleted"=>false));
         } else {
             R::trash($bean);
-            return new JSON(array("data"=>"ok"));
+            return new JSON(array("deleted"=>true));
         }
     }
 }

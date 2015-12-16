@@ -16,7 +16,6 @@ I recently discovered [RedBeanPHP](http://redbeanphp.com/) and my problem was so
 Rather than re-inventing the wheel I decided to use [Slim Framework](http://www.slimframework.com/) in RapidREST to handle the API routes. Check /config/routes.php and you'll thank me for doing so.
 
 
-
 #Installation
 =============
 ### Requirements...
@@ -46,11 +45,11 @@ Open **/config/rapidrest-config.php** to configure your database connection.
 ## All Done!
 Enjoy your CRUD API!
 
-# Stock API
+# Base Wildcard Endpoints
 =============
 There are five base universal routes in RapidREST. They're perfect for prototyping small applications but I suggest removing and re-writing their controllers before moving your app to production if it's going to be public. 
 
-You can create and modify *any* table automagically with these. RedBeanPHP will handle building the database tables.
+ReadBeanPHP will automatically build the table schema for you based on the information you send.
 
 #### GET list - yourapi.com/:table/
 Returns all of the records and their contents in the specified table.
@@ -71,17 +70,17 @@ Deletes a record from the table.
 =============
 These return a JSON response by the way. If a record can't be found, updated, created, etc. the program will spit out a JSON error message.
 
-A **GET** response will look like this:
+**GET** requests will list the found record(s) within the "data" array:
 
 	{"data":[{"id":"1","text":"Bacon!","title":"Important Message"}]}
 
-A **POST** or **PUT** will output the ID of the created / updated record:
+**POST** and **PUT** will return the ID of the created (or updated) record:
 
 	{"data":{"id":7}}
 	
-A **DELETE** will output this:
+**DELETE** will response with whether not a record was deleted.
 
-	{"data":"ok"}
+	{"deleted": true}
 
 **Exceptions** look like this:
 
@@ -127,7 +126,7 @@ It's reccomended you use the Response classes rather than simply using json_enco
 
 # Contributing...
 =============
-RapidREST is designed to be as basic as possible to supply CRUD functionality to prototypes. With that in mind if you would like to alter or extend its existing functionality please fork this repository and submit a pull request.
+Pull requests welcome :)
 
 
 # Acknowledgements...
