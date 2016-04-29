@@ -42,5 +42,9 @@
    	    "files": [
                "vendor/redbeanphp/rb.php"
    	    ]
-   	}
+	},
+	
+	"config": {
+      "secure-http": false
+   }
 }
