@@ -45,9 +45,9 @@ class RapidRest {
         $beans = R::find($type);
         $response = R::exportAll($beans);
         if(sizeof($response) > 0) {
-            return new JSON(array("data"=>$response));
+            return new JSON(array("statuscode"=>200, "data"=>$response, "count" => count($response)));
         } else {
-            throw new APIException("No " . $type . " records found.",404);
+            return new JSON(array("statuscode"=>404, "data"=>array(), "count" => 0));
         }
 
     }
@@ -67,7 +67,7 @@ class RapidRest {
         if($response['id'] == 0) {  # RedBean returns ID 0 for new records.
             throw new APIException($type . " not found.", 404);
         } else {
-            return new JSON(array("data"=>$response));
+            return new JSON(array("statuscode"=>200, "data"=>$response));
         }
     }
 
@@ -82,7 +82,7 @@ class RapidRest {
         if(sizeof($_POST) > 0) {
             $bean->import($_POST);
             $id = R::store($bean);
-            return new JSON(array("data"=>array("id"=>$id)));
+            return new JSON(array("statuscode"=>200, "data"=>array("id"=>$id)));
         } else {
             throw new APIException("No data received.",400);
         }
@@ -107,7 +107,7 @@ class RapidRest {
             if(sizeof($_REQUEST) > 0) {
                 $bean->import($_REQUEST);
                 R::store($bean);
-                return new JSON(array("data"=>array("id"=>$id['id'])));
+                return new JSON(array("statuscode"=>200, "data"=>array("id"=>$id['id'])));
             } else {
                 throw new APIException("No data received.", 400);
             }

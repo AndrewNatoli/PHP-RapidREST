@@ -1,7 +1,5 @@
 #PHP-RapidREST
 =============
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/AndrewNatoli/PHP-RapidREST?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 **RapidREST allows you to have a working CRUD API in sixty seconds!**
 
 # Background
@@ -54,17 +52,70 @@ ReadBeanPHP will automatically build the table schema for you based on the infor
 #### GET list - yourapi.com/:table/
 Returns all of the records and their contents in the specified table.
 
+```
+{
+  "statuscode": 200,
+  "data": [{
+    "id": "1",
+    "title": "Important Message",
+    "text": "Hello, world!"
+  }, {
+    "id": "2",
+    "title": "Also important",
+    "text": "This is a message"
+  }],
+  "count": 2
+}
+```
+
 #### GET record - yourapi.com/:table/:id
 Returns the specified record from a table.
+
+```
+{
+  "statuscode": 200,
+  "data": [{
+	"id": "1",
+	"text": "Bacon!",
+	"title": "Important Message"
+  }]
+}
+```
 
 #### POST record - yourapi.com/:table/
 Creates a new record in the table.
 
+```
+{
+  "statuscode": 200,
+  "data": {
+	"id": 3
+  }
+}
+```
+
 #### PUT record - yourapi.com/:table/:id
 Updates an existing record in the table.
 
+```
+{
+  "statuscode": 200,
+  "data": {
+	"id": 2
+  }
+}
+```
+
 #### DELETE record - yourapi.com/:table/:id
 Deletes a record from the table.
+
+```
+{
+	"statuscode": 200,
+	"deleted": true
+}
+```
+	
 
 # Response Formats
 =============
@@ -72,15 +123,15 @@ These return a JSON response by the way. If a record can't be found, updated, cr
 
 **GET** requests will list the found record(s) within the "data" array:
 
-	{"data":[{"id":"1","text":"Bacon!","title":"Important Message"}]}
+
 
 **POST** and **PUT** will return the ID of the created (or updated) record:
 
-	{"data":{"id":7}}
+
 	
 **DELETE** will response with whether not a record was deleted.
 
-	{"deleted": true}
+
 
 **Exceptions** look like this:
 

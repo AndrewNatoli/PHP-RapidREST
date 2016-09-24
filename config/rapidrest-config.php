@@ -7,7 +7,7 @@
 
 $DB_CONFIG = array();
 
-$DB_CONFIG['engine']= "mysql";          # Supported and tested: mysql. SHOULD work: pdsql & sqlite (Enter their names as such!)
+$DB_CONFIG['engine']= "sqlite";          # Supported and tested: mysql. SHOULD work: pdsql & sqlite (Enter their names as such!)
 
 /* Non-SQLite settings. */
 $DB_CONFIG['host']  = "localhost"; # Host
@@ -16,4 +16,4 @@ $DB_CONFIG['user']  = "root";           # Username
 $DB_CONFIG['pass']  = "pass";           # Password
 
 /* SQLite Configuration */
-$DB_CONFIG['SQLiteDB']  = "/path/to/my_database.db";
+$DB_CONFIG['SQLiteDB']  = "my_database.db";
